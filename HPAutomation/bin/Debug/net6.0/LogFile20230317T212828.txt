@@ -1,0 +1,8 @@
+Log: Start: Migration Started
+Start: ImportExceltoDatabase execution
+Table with name file_example_XLS_10 created successfully.
+Data inserted into table 'file_example_XLS_10' successfully.
+Start: automation_proc execution started
+Start: automation_proc execution completed
+End: ImportExceltoDatabase execution
+Log: Start: Migration Completed
