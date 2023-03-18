@@ -13,23 +13,43 @@
     {
         public void MigrateData()
         {
-            var filePath = AppSettings.FileLocation;
+            var directoryLocation = AppSettings.FileLocation;
 
-            string extension = Path.GetExtension(filePath).ToLower();
-            string[] validFileTypes = { ".xls", ".xlsx" };
-
-            if (!validFileTypes.Contains(extension))
+            if (!Directory.Exists(directoryLocation))
             {
-                LogFile.WriteLog($"File extension {extension} is not valid type");
+                LogFile.WriteLog($"Error: Directory location {directoryLocation} does not exists.");
             }
 
-            var connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1\"";
+            var files = Directory.GetFiles(directoryLocation);
 
-            ImportExceltoDatabase(connString, filePath);
+            if (files != null && files.Length > 0)
+            {
+                foreach (var filePath in files)
+                {
+                    string extension = Path.GetExtension(filePath).ToLower();
+                    string[] validFileTypes = { ".xls", ".xlsx" };
+
+                    if (!validFileTypes.Contains(extension))
+                    {
+                        LogFile.WriteLog($"Info: File extension {extension} is not valid type in the file '{filePath}'");
+                    }
+                    else
+                    {
+                        var connString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath + ";Extended Properties=\"Excel 12.0;HDR=Yes;IMEX=1\"";
+
+                        ImportExceltoDatabase(connString, filePath);
+                    }
+                }
+            }
+            else
+            {
+                LogFile.WriteLog($"Info: No files exists at location {directoryLocation}.");
+            }
         }
 
         private void ImportExceltoDatabase(string connString, string filePath)
         {
+            LogFile.WriteLog($"Info: Execution started for the file '{filePath}'");
             LogFile.WriteLog($"Log: ImportExceltoDatabase execution started");
 
             var excelConnection = new OleDbConnection(connString);
@@ -100,7 +120,7 @@
                 while (ex != null)
                 {
                     stringBuilder.Append(ex.Message);
-                    ex = ex.InnerException;
+                    ex = ex?.InnerException;
                 }
 
                 LogFile.WriteLog($"Error: An error occurred while importing migrating the data. {stringBuilder.ToString()}");

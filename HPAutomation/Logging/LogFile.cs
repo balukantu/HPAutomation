@@ -12,7 +12,14 @@
             var fileName = "LogFile" + DateTime.Now.ToString("yyyyMMddTHHmmss") + ".txt";
             var directory = Directory.GetCurrentDirectory();
 
-            FilePath = Path.Combine(directory, fileName);
+            var logDirectory = Path.Combine(directory, "LogFiles");
+
+            if (!Directory.Exists(logDirectory))
+            {
+                Directory.CreateDirectory(logDirectory);
+            }
+
+            FilePath = Path.Combine(logDirectory, fileName);
         }
 
         public static void WriteLog(string message)

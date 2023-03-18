@@ -1,0 +1,14 @@
+Log: Migration Started
+Info: File extension .docx is not valid type in the file E:\Quad\Documents\Cataloguing a large number of reversal reasons.docx
+Log: ImportExceltoDatabase execution started
+Log: Table file_example_XLS_10 created successfully.
+Log: Data inserted into table 'file_example_XLS_10' successfully.
+Log: automation_proc execution started
+Log: automation_proc execution completed
+Log: ImportExceltoDatabase execution completed
+Info: File extension .txt is not valid type in the file E:\Quad\Documents\incomplete_deposits_results.txt
+Info: File extension .txt is not valid type in the file E:\Quad\Documents\incomplete_payout_results.txt
+Info: File extension .json is not valid type in the file E:\Quad\Documents\Report.JSON
+Info: File extension .csv is not valid type in the file E:\Quad\Documents\ReversalPaymentsExportAdmin20230209054948.csv
+Info: File extension .rest is not valid type in the file E:\Quad\Documents\Transactive_Sandbox_Script.rest
+Log: Migration Completed

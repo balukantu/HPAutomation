@@ -10,7 +10,6 @@
         // AccessDatabaseEngine_X64 -- Might be needed if you get any exception
         public static void Main(string[] args)
         {
-
             var host = Host.CreateDefaultBuilder(args)
                           .ConfigureServices((_, services) =>
                               services.AddScoped<DataMigrationService>())
